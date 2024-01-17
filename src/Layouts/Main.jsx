@@ -7,11 +7,11 @@ const Main = () => {
         <div className='flex'>
             <Sidebar></Sidebar>
             <div className="flex-1 py-14 px-20">
-            <Outlet></Outlet>
+                <Outlet></Outlet>
             </div>
 
-    </div>
-      
+        </div>
+
     );
 };
 

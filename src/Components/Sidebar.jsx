@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import IconInbox from "../Icons/IconInbox"
 import IconToday from "../Icons/IconToday"
 import IconAnytime from "../Icons/IconAnytime"
@@ -6,7 +6,8 @@ import IconUpcoming from "../Icons/IconUpcoming"
 import IconSomeday from "../Icons/IconSomeday"
 import IconLogbook from "../Icons/IconLogbook"
 import IconTrash from "../Icons/IconTrash"
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import Navlink from './Navlink';
 
 const links = [
     {
@@ -52,32 +53,20 @@ const links = [
     },
 ]
 const Sidebar = () => {
-
-
-
-
-
-    const Navlink = ({ label, icon, href }) => {
-
-        return (
-            <Link to={href}>
-                <div className='flex gap-2 items-center hover:bg-gray-200 px-2 py-1 rounded-sm cursor-pointer'>
-                    {icon}
-                    <p>{label}</p>
-                </div>
-            </Link>
-
-        )
-    }
-
+     const {pathname} = useLocation()
 
     return (
         <div className="w-56 bg-zinc-50 h-screen border-r flex flex-col">
             <ul className="px-5 py-5">
                 {links.map((link, i) => {
+                    
+                    const isActive = pathname === link.href
+
                     return (
-                        <li key={i} className={link.className}>
-                            <Navlink {...link}></Navlink>
+                        <li 
+                       
+                        key={i} className={link.className}>
+                            <Navlink {...link} isActive ={isActive}></Navlink>
                         </li>
                     );
                 })}
